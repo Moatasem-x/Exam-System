@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+
+body
+{
+    color: #271b55;
+    font-family: "Itim", cursive;
+}
+
+h1, h2, h3, h4, h5, h6, button, nav
+{
+    font-family: "Irish Grover", system-ui;
+}
+
+.custom-input
+{
+    display: block;
+    width: 100%;
+    border: 2px solid #271b55;
+    border-radius: 10px;
+    padding: 0.5rem 0.7rem;
+    color: rgb(109, 138, 218);
+    font-weight: 500;
+}
+
+textarea:focus, input:focus, input[type]:focus
+ {   
+    border-color: rgba(39, 27, 85, 1);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(39, 27, 85, .7);
+    outline: 0 none;
+}
+
+::placeholder 
+{
+  color: #a7b7ec;
+  font-weight: 500;
+  opacity: 1;
+}
+
+::-ms-input-placeholder 
+{
+  color: #a7b7ec;
+  font-weight: 500;
+}
+
+.custom-button
+{
+    color: #fff;
+    background-color: #271b55;
+    padding: .5rem .6rem;
+    border: 1px solid #271b55;
+    border-radius: 10px;
+    letter-spacing: 2px;
+}
