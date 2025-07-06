@@ -1,1 +1,16 @@
-<p>exam-card works!</p>
+<div class="row my-5 exam-card py-4 px-4">
+    <div class="col-3">
+        <h2>{{exam.name}}</h2>
+        <div class="ps-4">
+            <h4>Duration: {{exam.duration}}</h4>
+            <h4>Grade: {{exam.grade}}</h4>
+            <h4>Min Grade: {{exam.minGrade}}</h4>
+        </div>
+    </div>
+    <div class="offset-6 col-3 text-center d-flex align-items-center">
+        <div class="ms-auto">
+            <h4>Open Until 10 July</h4>
+            <button class="custom-button">Take Exam</button>
+        </div>
+    </div>
+</div>
