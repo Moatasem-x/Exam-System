@@ -1,0 +1,37 @@
+.profile-banner h2 {
+  font-size: 1.25rem;
+}
+
+/* Hover effect for overview cards */
+.overview-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.overview-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Widget hover effect */
+.chart-widgets > div {
+  min-height: 260px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.chart-widgets > div:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Optional canvas animation (subtle) */
+canvas {
+  max-height: 220px !important;
+  transition: filter 0.3s ease;
+}
+canvas:hover {
+  filter: brightness(1.03);
+}
+
+@media (min-width: 768px) {
+  .chart-widgets {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

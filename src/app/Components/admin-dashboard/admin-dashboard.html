@@ -1,0 +1,33 @@
+<section class="px-3 mb-3 mt-3">
+  <h4 class="fw-bold">Hey, {{ teacher.name }} 👋</h4>
+  <p class="text-muted small mb-0">Here’s your current progress</p>
+</section>
+
+<section class="d-flex flex-column gap-3 px-3 mb-4">
+  @for (s of summary; track s) {
+    <div class="stat-box text-start">
+      <h6 class="text-muted text-uppercase small mb-1">{{ s.title }}</h6>
+      <h5 class="fw-bold mb-0" [ngClass]="s.color">{{ s.value }}</h5>
+      <p class="text-muted small mb-0">{{ s.subtext }}</p>
+    </div>
+  }
+</section>
+
+<section class="row g-3 px-3 mb-4">
+  <div class="col-12 col-md-6">
+    <div class="chart-card position-relative h-100">
+      <h6 class="text-uppercase text-muted small mb-2">Total Accuracy</h6>
+      <strong class="d-block mb-2">🎯 Score Gauge</strong>
+      <app-exam-summary></app-exam-summary>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6">
+    <div class="chart-card h-100">
+      <h6 class="text-uppercase text-muted small mb-2">By Subject</h6>
+      <strong class="d-block mb-2">📊 Performance</strong>
+      <app-average></app-average>
+    </div>
+  </div>
+</section>
+

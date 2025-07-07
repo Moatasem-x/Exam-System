@@ -1,0 +1,58 @@
+/* ✏️ General adjustments */
+h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 📊 Stats Cards */
+.stat-box {
+  background: #fff;
+  padding: 0.75rem 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.4rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  transition: transform 0.2s ease;
+}
+.stat-box h5 {
+  font-size: 1.1rem;
+}
+.stat-box:hover {
+  transform: translateY(-2px);
+}
+
+/* 📈 Chart containers */
+.chart-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  border: 1px solid #dee2e6;
+}
+.chart-card h6 {
+  font-size: 0.75rem;
+}
+.chart-card strong {
+  font-size: 0.9rem;
+}
+
+/* 🎯 Canvas & center text */
+canvas {
+  max-height: 200px !important;
+  width: 100% !important;
+}
+.gauge-center h4 {
+  font-size: 1.1rem;
+}
+.gauge-center small {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+/* 🧱 Layout spacing */
+section {
+  margin-bottom: 1rem;
+}
+.d-flex.gap-3,
+.d-flex.flex-column.gap-3 {
+  gap: 0.75rem !important;
+}
