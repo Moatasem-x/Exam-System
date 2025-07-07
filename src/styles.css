@@ -9,8 +9,9 @@ body
     font-family: "Itim", cursive;
 }
 
-h1, h2, h3, h4, h5, h6, button, nav
+h1, button, nav
 {
+    color: #271b55;
     font-family: "Irish Grover", system-ui;
 }
 
@@ -49,7 +50,7 @@ textarea:focus, input:focus, input[type]:focus
 {
     color: #fff;
     background-color: #271b55;
-    padding: .5rem .6rem;
+    padding: .5rem .7rem;
     border: 1px solid #271b55;
     border-radius: 10px;
     letter-spacing: 2px;

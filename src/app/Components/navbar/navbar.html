@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Home</a>
+          <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="'text-danger'">Home</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Exams</a>
+          <a class="nav-link" [routerLink]="['/exams']" [routerLinkActive]="'text-danger'">Exams</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="'text-danger'">Login</a>
         </li>
         <li class="nav-item mx-3">
-          <a class="nav-link" href="#">Signup</a>
+          <a class="nav-link" [routerLink]="['/register']" [routerLinkActive]="'text-danger'">Signup</a>
         </li>
       </ul>
     </div>

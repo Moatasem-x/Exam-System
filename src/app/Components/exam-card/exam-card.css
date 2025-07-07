@@ -1,0 +1,15 @@
+.exam-card
+{
+    border-top: 2px solid #271b55;
+    border-bottom: 2px solid #271b55;
+    background-color: #a7b7ec;
+    h4 
+    {
+        color: #322b50;
+    }
+}
+
+button
+{
+    font-family: "Itim", cursive;
+}
