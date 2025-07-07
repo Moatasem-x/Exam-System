@@ -1,5 +1,7 @@
-<h1 class="text-center">Current Exams</h1>
-@for (exam of exams; track exam.id) 
-{
-    <app-exam-card [exam]="exam"></app-exam-card>
-}
+<section class="current-exams p-5">
+    <h1 class="text-center">Current Exams</h1>
+    @for (exam of exams; track exam.id) 
+    {
+        <app-exam-card [exam]="exam"></app-exam-card>
+    }
+</section>

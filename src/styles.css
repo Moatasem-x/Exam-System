@@ -7,6 +7,10 @@ body
 {
     color: #271b55;
     font-family: "Itim", cursive;
+    background-color: #eee;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1, button, nav

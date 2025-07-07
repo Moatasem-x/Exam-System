@@ -1,4 +1,8 @@
-<app-navbar></app-navbar>
-<section class="container my-5">
-    <app-register></app-register>
-</section>
+<div class="d-flex flex-column min-vh-100">
+  <app-navbar></app-navbar>
+  <section class="container w-100 d-flex align-items-center m-auto flex-grow-1">
+    <div class="w-100">
+        <router-outlet></router-outlet>
+    </div>
+  </section>
+</div>

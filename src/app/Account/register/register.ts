@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,11 +10,13 @@ import { RouterLink } from '@angular/router';
 })
 export class Register {
 
+  constructor(private router: Router) {}
+
   registerForm = new FormGroup({
     "name": new FormControl("", [Validators.required]),
     "email": new FormControl("", [Validators.required, Validators.email]),
     "address": new FormControl("", [Validators.required]),
-    "password": new FormControl("", [Validators.required]),
+    "password": new FormControl("", [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/)]),
     "confirmPassword": new FormControl("", [Validators.required])
   });
 
@@ -42,6 +44,7 @@ export class Register {
     if(this.registerForm.status == "VALID" && this.getPassword().value == this.getConfirmPassword().value)
     {
       console.log(this.registerForm.value);
+      this.router.navigateByUrl("/login");
     }
   }
 

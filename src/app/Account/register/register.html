@@ -1,5 +1,5 @@
 <section>
-    <div class="row">
+    <div class="row bg-white rounded-5 p-4">
         <div class="col-md-6 d-flex justify-content-center align-items-center">
             <img class="w-100" src="/images/1.jpg" alt="">
         </div>
@@ -47,6 +47,10 @@
                         @if (getPassword().hasError("required")) 
                         {
                             <p class="text-danger ms-2">Password Required</p>
+                        }
+                        @if (getPassword().hasError("pattern")) 
+                        {
+                            <p class="text-danger ms-2">Password must be at least 8 characters with (1 Upper Case, 1 Lower Case, 1 Number)</p>
                         }
                     }
                 </div>

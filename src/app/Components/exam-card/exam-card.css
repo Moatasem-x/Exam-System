@@ -3,10 +3,17 @@
     border-top: 2px solid #271b55;
     border-bottom: 2px solid #271b55;
     background-color: #a7b7ec;
+    border-radius: 20px;
     h4 
     {
         color: #322b50;
     }
+    transition: transform 0.25s ease-in-out;
+}
+
+.exam-card:hover
+{
+    transform: scale(1.009);
 }
 
 button
