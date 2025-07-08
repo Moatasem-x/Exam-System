@@ -5,7 +5,8 @@ import { Register } from "./Account/register/register";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Register],
+  imports: [RouterOutlet, Navbar],
+    // , Register],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

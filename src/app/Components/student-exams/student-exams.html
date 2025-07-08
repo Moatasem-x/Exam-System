@@ -1,0 +1,20 @@
+<div class="container mt-4">
+  <h3 class="mb-4">Taken Exams</h3>
+
+  <div class="row">
+    <div class="col-md-6 mb-3" *ngFor="let exam of exams">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ exam.examName }}</h5>
+          <p class="card-text">
+            <strong>Grade:</strong> {{ exam.studentGrade }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="exams.length === 0" class="alert alert-info">
+    This student has not taken any exams yet.
+  </div>
+</div>
