@@ -19,7 +19,7 @@ export const routes: Routes = [
     {path: "stdash", component: Dashboard},
     {path: "admindash", component: AdminDashboard},
     {path: "students" ,component : AllStudents },
-    {path: "student/:id/exams" ,component : StudentExams }
+    {path: "student/:id/exams" ,component : StudentExams },
 
     {path: "admindash", component: AdminDashboard},
     {path: "newexam", component: AddExam},
