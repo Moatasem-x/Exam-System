@@ -10,7 +10,8 @@
     <div class="offset-6 col-3 text-center d-flex align-items-center">
         <div class="ms-auto">
             <h4>Open Until 10 July</h4>
-            <button class="custom-button">Take Exam</button>
+            <!-- <button class="custom-button">Take Exam</button> -->
+            <button class="custom-button" [routerLink]="['/examquestions',exam.id]">Edit Exam</button>            
         </div>
     </div>
 </div>

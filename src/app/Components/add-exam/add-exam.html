@@ -1,0 +1,73 @@
+<form [formGroup]="newExamForm" class="m-5" (submit)="AddExam()" >
+
+
+    <div class="mb-4">
+    <div class="form-group">
+    <label for="name">Exam Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter your Exam name"
+    formControlName ="name"
+    >
+</div>     
+     @if(getName.touched){
+         @if(getName.hasError('required')){
+      <div  class="form-text text-danger">
+         Name is Required
+      </div>
+      }
+
+      @if(getName.hasError('minlength')){
+         <div  class="form-text text-danger">
+         Name's length at least 5
+      </div>
+      }
+
+      @if(getName.hasError('pattern')){
+         <div  class="form-text text-danger">
+         Name only contains letters and digits 0-9  
+      </div>
+      }
+
+    }
+  <div class="form-group">
+    <label for="duration">duration</label>
+    <input type="number" class="form-control" id="duration" placeholder="Enter exam duration"
+    formControlName ="duration"
+    >
+  </div>
+
+    @if(getDuration.touched){
+    @if(getDuration.hasError('required')){
+        <div  class="form-text text-danger">
+        duration is Required
+      </div>
+    }
+  }
+   @if(getDuration.hasError('pattern')){
+         <div  class="form-text text-danger">
+        duration only contains numbers  
+      </div>
+      }
+   @if(getDuration.hasError('min')){
+         <div  class="form-text text-danger">
+        Exam's duration at least 10 minutes  
+      </div>
+      }
+   @if(getDuration.hasError('max')){
+         <div  class="form-text text-danger">
+        Exam's duration at max 300 minutes  
+      </div>
+      }
+
+    </div>
+
+
+  <button type="submit" class="btn btn-primary mt-3">Save</button>
+</form>
+
+
+
+
+
+
+
+

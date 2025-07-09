@@ -1,0 +1,74 @@
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">body</th>
+      <th scope="col">Grade</th>
+      <th scope="col">Ans1</th>
+      <th scope="col">Ans2</th>
+      <th scope="col">Ans3</th>
+      <th scope="col">Ans4</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for ( question of allQs; track question.id) {
+         <tr>
+      <th scope="row"> {{question.id}} </th>
+
+      <td>
+      <input [(ngModel)]="question.body">  
+      </td>
+
+
+      <td>
+      <input [(ngModel)]="question.grade">  
+      </td>
+      @for (ans of question.answers; track $index) {
+
+        <td>
+          <input [(ngModel)]="ans.answerText">  
+        </td>
+      }
+
+      @if(question.answers.length!=4) {
+        <td></td>
+        <td></td>
+      }
+      <button (click)="del($index)"class="btn btn-danger" > Delete </button>
+     
+
+    </tr>
+    }
+
+          @for ( new of newQs; track $index) {
+         <tr>
+      <th scope="row"> {{"Static"}} </th>
+
+      <td>
+      <input [(ngModel)]="new.body">  
+      </td>
+
+      <td>
+      <input [(ngModel)]="new.grade">  
+      </td>
+      @for (ans of new.answers; track $index) {
+
+        <td>
+          <input [(ngModel)]="ans.answerText">  
+        </td>
+      }
+
+      <!-- <button (click)="del($index)"class="btn btn-danger" > Delete </button> -->
+     
+
+    </tr>
+    }
+
+
+    </tbody>
+    </table>
+
+     <button (click)="savetoDB()" class="btn btn-success" > Save all </button>
+     <hr>
+     <button  class="btn btn-success" (click)="AddnewQ()" > Add new question </button>
