@@ -5,6 +5,8 @@ import { Login } from './Account/login/login';
 import { CurrentExams } from './Pages/current-exams/current-exams';
 import { Dashboard } from './Components/dashboard/dashboard';
 import { AdminDashboard } from './Components/admin-dashboard/admin-dashboard';
+import { AllStudents } from './Components/all-students/all-students';
+import { StudentExams } from './Components/student-exams/student-exams';
 
 export const routes: Routes = [
     {path: "", redirectTo: "home", pathMatch: "full"},
@@ -13,6 +15,9 @@ export const routes: Routes = [
     {path: "login", component: Login},
     {path: "exams", component: CurrentExams},
     {path: "stdash", component: Dashboard},
-    {path: "admindash", component: AdminDashboard}
+    {path: "admindash", component: AdminDashboard},
+    {path: "students" ,component : AllStudents },
+    {path: "student/:id/exams" ,component : StudentExams }
+
 
 ];
