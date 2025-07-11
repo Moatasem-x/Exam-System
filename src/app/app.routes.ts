@@ -9,6 +9,7 @@ import { AllStudents } from './Components/all-students/all-students';
 import { StudentExams } from './Components/student-exams/student-exams';
 import { AddExam } from './Components/add-exam/add-exam';
 import { ExamQuestions } from './Components/exam-questions/exam-questions';
+import { TakeExam } from './Pages/take-exam/take-exam';
 
 export const routes: Routes = [
     {path: "", redirectTo: "home", pathMatch: "full"},
@@ -20,9 +21,8 @@ export const routes: Routes = [
     {path: "admindash", component: AdminDashboard},
     {path: "students" ,component : AllStudents },
     {path: "student/:id/exams" ,component : StudentExams },
-
-    {path: "admindash", component: AdminDashboard},
     {path: "newexam", component: AddExam},
-    {path:"examquestions/:id",component:ExamQuestions}
+    {path:"examquestions/:id",component:ExamQuestions},
+    {path: "takeexam/:eid/:stid", component: TakeExam}
 
 ];

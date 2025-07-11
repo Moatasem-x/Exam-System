@@ -1,4 +1,3 @@
-// import { IAnswer } from "./ianswer";
 import { INewAns } from "./INewAns";
 
 export interface INewQ{

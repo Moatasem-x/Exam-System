@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -6,19 +6,24 @@ import { IExam } from '../../Interfaces/iexam';
 import { IQuestion } from '../../Interfaces/iquestion';
 import { FormsModule } from '@angular/forms';
 import { INewQ } from '../../Interfaces/INewQ';
+import { ExamService } from '../../Services/exam-service';
+import { QuestionService } from '../../Services/question-service';
+import { CommonModule } from '@angular/common';
+import { QuestionCard } from "../question-card/question-card";
+
 
 @Component({
   selector: 'app-exam-questions',
-  imports: [HttpClientModule,FormsModule],
+  imports: [CommonModule, FormsModule, QuestionCard],
   templateUrl: './exam-questions.html',
-  styleUrl: './exam-questions.css'
+  styleUrl: './exam-questions.css',
 })
 export class ExamQuestions implements OnInit {
 
 
-constructor(private active:ActivatedRoute , private cdr:ChangeDetectorRef , private http:HttpClient ) {}
+constructor(private active:ActivatedRoute , private cdr:ChangeDetectorRef , private http:HttpClient, private examService:ExamService, private questionService:QuestionService ) {}
 
-examid:number=0;
+examid!:number;
 baseurl:string = "";
 mySub!:Subscription;
 allQs:IQuestion[]=[];
@@ -47,18 +52,11 @@ emptyQ:INewQ = {
 }
 newQs:INewQ[] = []; 
 
-//Create Array of IQestion for new questions added to the exam
-// in html loop over new array and questions coming form the DB 
-// When user clicks save loop over each array individually 
-// update the existing questions 
-// and add new questions 
-// delete will delete the question and it's can't be undone 
   ngOnInit(): void {
 
-     this.active.params.subscribe(params=>{
+    this.active.params.subscribe(params=>{
       this.examid = params['id'];
-      this.baseurl = `https://localhost:7191/api/Exam/${this.examid}`;
-      this.mySub = this.http.get<IExam>(this.baseurl).subscribe({
+      this.mySub = this.examService.getExamById(this.examid).subscribe({
         next :(resp)=>{
           this.allQs = resp.question;
           console.log(this.allQs);
@@ -75,7 +73,7 @@ newQs:INewQ[] = [];
   savetoDB(){
 
     this.allQs.forEach(element => {
-      this.mySub = this.http.put(`https://localhost:7191/api/Question/${element.id}`,element).subscribe({
+      this.mySub = this.questionService.editQuestion(element, element.id).subscribe({
         next :(resp)=>{
           console.log(resp);
         },
@@ -87,7 +85,7 @@ newQs:INewQ[] = [];
     
     this.newQs.forEach(element => {
 
-      this.mySub = this.http.post(`https://localhost:7191/api/Question`,element).subscribe({
+      this.mySub = this.questionService.addQuestion(element).subscribe({
         next :(resp)=>{
           console.log(resp);
           location.reload();
@@ -99,27 +97,12 @@ newQs:INewQ[] = [];
 
     });
 
-// location.reload();
-  }
-
-  del(index:number){
-    let qid = this.allQs[index].id;
-          this.mySub = this.http.delete(`https://localhost:7191/api/Question/${qid}`).subscribe({
-        next :(resp)=>{
-          console.log(resp);
-          location.reload();
-        },
-        error:(err)=>{
-          console.log(err);
-        }
-      })
-
   }
 
   AddnewQ(){
     let q = this.deepcopy(this.emptyQ);
     q.examId = this.examid;
-this.newQs.push(q);
+    this.newQs.push(q);
   }
 
 
@@ -128,6 +111,26 @@ this.newQs.push(q);
     ...q,
     answers: q.answers.map(a => ({ ...a }))
   };
-}
+  }
+
+  updateQuestions(flag:boolean) {
+    if (flag) {
+      this.active.params.subscribe(params=>{
+        this.examid = params['id'];
+        this.mySub = this.examService.getExamById(this.examid).subscribe({
+          next :(resp)=>{
+            this.allQs = resp.question;
+            console.log(this.allQs);
+            this.cdr.detectChanges();
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        })
+      })
+    }
+  }
+      
 
 }
+

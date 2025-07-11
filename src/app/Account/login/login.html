@@ -3,41 +3,39 @@
         <div class="col-md-6 d-flex justify-content-center align-items-center">
             <img class="w-100" src="/images/1.jpg" alt="">
         </div>
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <div class="col-md-6 d-flex justify-content-center align-items-center p-5">
             <div class="w-100">
+                <h1 class="text-center mb-4">Login</h1>
                 <form [formGroup]="loginForm" (submit)="login()">
-                <h1 class="text-center mb-5">Login</h1>
-                <div class="my-3">
-                    <input type="email" class="custom-input my-2" placeholder="Email" formControlName="email">
-                    @if (getEmail().touched)
-                    {
-                        @if (getEmail().hasError("required")) 
+                    <div class="my-3">
+                        <input type="email" class="custom-input my-2" placeholder="Email" formControlName="email">
+                        @if (getEmail().touched)
                         {
-                            <p class="text-danger ms-2">Email Required</p>
+                            @if (getEmail().hasError("required")) 
+                            {
+                                <p class="text-danger ms-2">Email Required</p>
+                            }
+                            @if (getEmail().hasError("email"))
+                            {
+                                <p class="text-danger ms-2">Email Invalid</p>
+                            }
                         }
-                        @if (getEmail().hasError("email"))
+                    </div>
+                    <div class="my-3">
+                        <input type="password" class="custom-input my-2" placeholder="Password" formControlName="password">
+                        @if (getPassword().touched) 
                         {
-                            <p class="text-danger ms-2">Email Invalid</p>
+                            @if (getPassword().hasError("required")) 
+                            {
+                                <p class="text-danger ms-2">Password Required</p>
+                            }
                         }
-                    }
-                </div>
-                <div class="my-3">
-                    <input type="password" class="custom-input my-2" placeholder="Password" formControlName="password">
-                    @if (getPassword().touched) 
-                    {
-                        @if (getPassword().hasError("required")) 
-                        {
-                            <p class="text-danger ms-2">Password Required</p>
-                        }
-                    }
-                </div>
-                <div class="text-center fs-5">
-                    <span>Don't have an account? <a [routerLink]="['/register']" class="text-decoration-none">Register</a></span>
-                </div>
-                <div class="my-3 d-flex justify-content-center">
-                    <button type="submit" class="custom-button">Login</button>
-                </div>
-            </form>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fs-5 ms-2">Don't have an account? <a [routerLink]="['/register']" class="text-decoration-none">Register</a></span>
+                        <button type="submit" class="custom-button-outline">Login</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

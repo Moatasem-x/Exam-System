@@ -1,0 +1,34 @@
+<h1 class="text-center mb-5">{{examTitle}}</h1>
+<form [formGroup]="examForm" class="" (submit)="saveAnswers()">
+
+  @for ( question of q; track question.id && $index) {
+    <div class="bg-white rounded-5 px-5 py-4 my-4">
+      <h3>{{$index + 1}}- <span class="ms-2">{{ question.body }}</span></h3>
+      @for ( answer of question.answers; track answer.id) {
+        <div class="ms-5">
+          <div class="radio-container">
+            <input
+              type="radio"
+              [id]="'q' + question.id + '_a' + answer.id"
+              [value]="answer.id"
+              [formControlName]="question.id.toString()"
+            />
+            <span class="checkmark"></span>
+            <label [for]="'q' + question.id + '_a' + answer.id" class="form-label ms-2 fs-5">
+              {{ answer.answerText }}
+            </label>
+          </div>
+        </div>
+      }
+    </div>
+  }
+  <button type="submit" class="custom-button-outline ms-auto me-2">Submit</button>
+</form>
+
+
+
+
+
+
+
+

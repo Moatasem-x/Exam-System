@@ -1,10 +1,11 @@
-import { HttpClient, HttpClientModule, withXsrfConfiguration } from '@angular/common/http';
+import { HttpClient, withXsrfConfiguration } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-add-exam',
-  imports: [HttpClientModule,ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './add-exam.html',
   styleUrl: './add-exam.css'
 })
