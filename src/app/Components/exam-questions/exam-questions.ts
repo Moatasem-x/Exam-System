@@ -2,14 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IExam } from '../../Interfaces/iexam';
 import { IQuestion } from '../../Interfaces/iquestion';
 import { FormsModule } from '@angular/forms';
 import { ExamService } from '../../Services/exam-service';
 import { QuestionService } from '../../Services/question-service';
 import { CommonModule } from '@angular/common';
 import { QuestionCard } from "../question-card/question-card";
-import { EditQuestionCard } from "../edit-question-card/edit-question-card";
+import { EditQuestionCard } from "../add-question-card/add-question-card";
 
 
 @Component({

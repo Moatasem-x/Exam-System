@@ -5,10 +5,10 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { QuestionService } from '../../Services/question-service';
 
 @Component({
-  selector: 'app-edit-question-card',
+  selector: 'app-add-question-card',
   imports: [ReactiveFormsModule],
-  templateUrl: './edit-question-card.html',
-  styleUrl: './edit-question-card.css'
+  templateUrl: './add-question-card.html',
+  styleUrl: './add-question-card.css'
 })
 export class EditQuestionCard {
 
