@@ -1,4 +1,4 @@
-<div class="container mt-4"> 
+<div class="container mt-4">
   <h3 class="mb-4">Taken Exams</h3>
 
   <div class="row">
@@ -9,17 +9,16 @@
           <p class="card-text">
             <strong>Grade:</strong> {{ exam.studentGrade }}
           </p>
-          <!-- 🔘 View Results Button -->
-          <a class="btn btn-outline-primary"
-             [routerLink]="['/student', StudentId, 'exams', exam.examID]" >
-             View Result
-          </a>
         </div>
       </div>
-    </div>
+    }
   </div>
 
-  <div *ngIf="exams.length === 0" class="alert alert-info">
-    This student has not taken any exams yet.
-  </div>
+  @if (exams.length == 0) 
+  {
+    <div class="alert alert-info">
+      <p class="fs-4">This student has not taken any exams yet.</p>
+    </div>
+  }
+
 </div>

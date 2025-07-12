@@ -7,19 +7,17 @@ import { Dashboard } from './Components/dashboard/dashboard';
 import { AdminDashboard } from './Components/admin-dashboard/admin-dashboard';
 import { AllStudents } from './Components/all-students/all-students';
 import { StudentExams } from './Components/student-exams/student-exams';
-import { StudentExamAnswer } from './Components/student-exam-answer/student-exam-answer';
 
 export const routes: Routes = [
-    { path: "", redirectTo: "home", pathMatch: "full" },
-    { path: "home", component: Home },
-    { path: "register", component: Register },
-    { path: "login", component: Login },
-    { path: "exams", component: CurrentExams },
-    { path: "stdash", component: Dashboard },
-    { path: "admindash", component: AdminDashboard },
-    { path: "students", component: AllStudents },
-    { path: "student/:id/exams", component: StudentExams },
-    { path: "student/:studentId/exams/:examId", component: StudentExamAnswer }
+    {path: "", redirectTo: "home", pathMatch: "full"},
+    {path:"home", component: Home},
+    {path: "register", component: Register},
+    {path: "login", component: Login},
+    {path: "exams", component: CurrentExams},
+    {path: "stdash", component: Dashboard},
+    {path: "admindash", component: AdminDashboard},
+    {path: "students" ,component : AllStudents },
+    {path: "student/:id/exams" ,component : StudentExams }
 
 
 ];

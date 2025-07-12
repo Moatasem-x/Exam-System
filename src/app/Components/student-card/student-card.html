@@ -1,0 +1,12 @@
+<div class="student-card bg-white rounded-3 py-4 px-3 shadow-lg">
+    <div class="student-card-body">
+        <h3 class="student-card-title text-center mb-3">{{ student.name }}</h3>
+        <h5 class="student-card-text">
+            <strong>Address:</strong> <span class="text-black ms-3">{{ student.address }}</span> <br />
+            <strong>Email:</strong> <span class="text-black ms-3">{{ student.email }}</span>
+        </h5>
+        <button class="custom-button-outline mx-auto mt-3"  [routerLink]="['/student',student.id,'exams']">
+            Show Taken Exams
+        </button>
+    </div>
+</div>

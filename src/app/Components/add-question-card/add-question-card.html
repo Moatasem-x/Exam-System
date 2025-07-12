@@ -1,0 +1,22 @@
+<div class="bg-white rounded-5 p-5 my-4">
+    <form [formGroup]="questionForm" (submit)="addQuestion()">
+        <div class="my-3">
+            <label class="form-label fs-4">Question</label>
+            <input formControlName="body" class="custom-input" placeholder="Enter Question">  
+        </div>
+
+        <div class="my-3">
+            <label class="form-label fs-4">Grade</label>
+            <input formControlName="grade" class="custom-input">  
+        </div>
+        <div  formArrayName="answers">
+            @for (ans of question.answers; track $index) {
+                <div class="my-3">
+                    <label class="form-label fs-4">Answer {{$index + 1}} @if($index == 0) {(True Answer)}</label>
+                    <input [formControlName]="$index" class="custom-input" placeholder="Enter Answer">
+                </div>
+            }
+        </div>
+        <button type="submit" class="custom-button-outline ms-auto me-1">Save</button>
+    </form>
+</div>

@@ -1,10 +1,11 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { IExam } from '../../Interfaces/iexam';
 import { ExamService } from '../../Services/exam-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-exam-card',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './exam-card.html',
   styleUrl: './exam-card.css'
 })

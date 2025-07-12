@@ -3,9 +3,10 @@
         <div class="col-md-6 d-flex justify-content-center align-items-center">
             <img class="w-100" src="/images/1.jpg" alt="">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 p-5">
+            <h1 class="text-center mb-4">Signup</h1>
             <form [formGroup]="registerForm" (submit)="register()">
-                <h1 class="text-center mb-5">Signup</h1>
+
                 <div class="my-3">
                     <input type="text" class="custom-input my-2" placeholder="Full Name" formControlName="name">
                     @if (getName().touched) 
@@ -64,11 +65,12 @@
                         }
                     }
                 </div>
-                <div class="text-center fs-5">
-                    <span>Already have an account? <a [routerLink]="['/login']" class="text-decoration-none">Login</a></span>
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <span class="fs-5">Already have an account? <a [routerLink]="['/login']" class="text-decoration-none">Login</a></span>
+                    <button type="submit" class="custom-button-outline">Register</button>
                 </div>
                 <div class="my-3 d-flex justify-content-center">
-                    <button type="submit" class="custom-button">Register</button>
+                    
                 </div>
             </form>
         </div>

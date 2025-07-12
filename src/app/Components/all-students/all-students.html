@@ -1,18 +1,11 @@
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-md-4 mb-3" *ngFor="let student of students">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title">{{ student.name }}</h5>
-          <p class="card-text">
-            <strong>Address:</strong> {{ student.address }} <br />
-            <strong>Email:</strong> {{ student.email }}
-          </p>
-          <button class="btn btn-primary"  [routerLink]="['/student',student.id,'exams']" >
-            Show Taken Exams
-          </button>
-        </div>
+<div class="container my-5">
+  <h1 class="text-center mb-5">Students</h1>
+  <div class="row gy-4 justify-content-center">
+    @for (student of students; track student.id) 
+    {
+      <div class="col-md-6 col-lg-4 mb-3">
+        <app-student-card [student]="student"></app-student-card>
       </div>
-    </div>
+    }
   </div>
 </div>
