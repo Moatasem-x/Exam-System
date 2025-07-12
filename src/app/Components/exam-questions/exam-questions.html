@@ -2,14 +2,14 @@
       <div class="py-5">
         <h1 class="text-center mb-4">Questions</h1>
         
-        @for ( question of allQs; track question.id && $index) {
-          <app-question-card [question]="question" [questionNumber]="$index + 1" (deleteEmitter)="updateQuestions($event)"></app-question-card>
+        @for ( question of allQs; track question.id; let i = $index) {
+          <app-question-card [question]="question" [questionNumber]="i + 1" (deleteEmitter)="updateQuestions($event)"></app-question-card>
         }
 
         @for (question of newQs; track $index) {
-          <app-add-question-card [question]="question"></app-add-question-card>
+          <app-add-question-card [question]="question" (addedQuestionEmitter)="addNewQuestion($event)"></app-add-question-card>
         }
-        <button class="custom-button mx-auto" (click)="AddnewQ()" > Add Question </button>
+        <button class="custom-button mx-auto" (click)="AddEmptyQuestion()" > Add Question </button>
       </div>
 </section>
 

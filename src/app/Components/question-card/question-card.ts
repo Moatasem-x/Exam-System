@@ -50,11 +50,11 @@ export class QuestionCard implements OnInit {
     
     for (let i = 0; i < this.question.answers.length; i++) {
       this.questionAnswers.push(this.question.answers[i].answerText);
-      
     }
     this.body.setValue(this.question.body);
     this.grade.setValue(this.question.grade.toString());
     this.answers.setValue(this.questionAnswers);
+    console.log(this.questionForm);
   }
 
   @Input() question!:IQuestion;
@@ -98,9 +98,15 @@ export class QuestionCard implements OnInit {
     this.mySub = this.questionService.deleteQuestion(qid).subscribe({
         next :(resp)=>{
           Swal.fire("Success", "Deleted Successfully", "success");
-          this.deleteEmitter.emit(true);
+          this.deleteEmitter.emit(qid);
         },
         error:(err)=>{
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>'
+          });
           console.log(err);
         }
     });
@@ -123,6 +129,13 @@ export class QuestionCard implements OnInit {
           console.log(err);
         }
       })
+    }
+    else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please Fill All The Fields",
+      });
     }
   }
 
