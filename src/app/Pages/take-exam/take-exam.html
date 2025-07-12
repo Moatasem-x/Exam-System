@@ -11,7 +11,7 @@
               type="radio"
               [id]="'q' + question.id + '_a' + answer.id"
               [value]="answer.id"
-              [formControlName]="question.id.toString()"
+              [formControlName]="question.id!.toString()"
             />
             <span class="checkmark"></span>
             <label [for]="'q' + question.id + '_a' + answer.id" class="form-label ms-2 fs-5">

@@ -63,7 +63,7 @@ export class TakeExam implements OnInit {
     const group: { [key: string]: FormControl } = {};
 
     this.q.forEach(question => {
-      group[question.id.toString()] = new FormControl(null,Validators.required); 
+      group[question.id!.toString()] = new FormControl(null,Validators.required); 
     });
 
     this.examForm = new FormGroup(group);
@@ -90,7 +90,7 @@ saveAnswers(): void {
     AnswerId: Number(answerId)
   }));
 
-  correctAnswers.sort((a, b) => a.questionId - b.questionId);
+  correctAnswers.sort((a, b) => a.questionId! - b.questionId!);
   result.sort((a, b) => a.QuestionId - b.QuestionId);
 
   let g = 0;

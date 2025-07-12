@@ -16,31 +16,44 @@
     {
         <div @expand class="overflow-hidden">
             <div class="details">
-                <div class="my-3">
-                    <label class="form-label fs-4">Question</label>
-                    <input [(ngModel)]="question.body" class="custom-input">
-                </div>  
-
-                <div class="my-3">
-                    <label class="form-label fs-4">Grade</label>
-                    <input [(ngModel)]="question.grade" class="custom-input">  
-                </div>
-
-                @for (ans of question.answers; track $index) {
+                <form [formGroup]="questionForm" (submit)="editQuestion()">
                     <div class="my-3">
-                    <label class="form-label fs-4">Answer {{$index+1}} @if($index == 0) {(True Answer)}</label>
-                    <input [(ngModel)]="ans.answerText" class="custom-input">
-                    </div>
-                }
+                        <label class="form-label fs-4">Question</label>
+                        <input formControlName="body" class="custom-input">
+                    </div>  
 
-                @if(question.answers.length!=4) {
-                }
-                <button
-                [swal]="{title: 'Confirmation', text: 'Are you sure you want to delete this question?', showCancelButton: true}"
-                (confirm)="del()"
-                class="btn btn-outline-danger d-block ms-auto" >
-                    Delete
-                </button>
+                    <div class="my-3">
+                        <label class="form-label fs-4">Grade</label>
+                        <input formControlName="grade" class="custom-input">  
+                    </div>
+
+                    <div formArrayName="answers">
+                        @for (ans of question.answers; track $index) {
+                        <div class="my-3">
+                            <label class="form-label fs-4">Answer {{$index+1}} @if($index == 0) {(True Answer)}</label>
+                            <input [formControlName]="$index" class="custom-input">
+                        </div>
+                        }
+                    </div>
+
+                    @if(question.answers.length!=4) {
+                    }
+                    <div class="d-flex justify-content-end">
+                        <button
+                        [swal]="{title: 'Confirmation', text: 'Are you sure you want to delete this question?', showCancelButton: true}"
+                        (confirm)="del()"
+                        class="btn btn-outline-danger d-block">
+                            <i class="bi bi-trash3"></i> Delete
+                        </button>
+                        <button
+                        [swal]="{title: 'Confirmation', text: 'Are you sure you want to update this question?', showCancelButton: true}"
+                        (confirm)="editQuestion()"
+                        type="submit"
+                        class="custom-button-outline me-1 ms-3">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     }

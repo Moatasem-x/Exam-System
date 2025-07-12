@@ -5,16 +5,16 @@ import { Subscription } from 'rxjs';
 import { IExam } from '../../Interfaces/iexam';
 import { IQuestion } from '../../Interfaces/iquestion';
 import { FormsModule } from '@angular/forms';
-import { INewQ } from '../../Interfaces/INewQ';
 import { ExamService } from '../../Services/exam-service';
 import { QuestionService } from '../../Services/question-service';
 import { CommonModule } from '@angular/common';
 import { QuestionCard } from "../question-card/question-card";
+import { EditQuestionCard } from "../edit-question-card/edit-question-card";
 
 
 @Component({
   selector: 'app-exam-questions',
-  imports: [CommonModule, FormsModule, QuestionCard],
+  imports: [CommonModule, FormsModule, QuestionCard, EditQuestionCard],
   templateUrl: './exam-questions.html',
   styleUrl: './exam-questions.css',
 })
@@ -23,11 +23,11 @@ export class ExamQuestions implements OnInit {
 
 constructor(private active:ActivatedRoute , private cdr:ChangeDetectorRef , private http:HttpClient, private examService:ExamService, private questionService:QuestionService ) {}
 
-examid!:number;
+examId!:number;
 baseurl:string = "";
 mySub!:Subscription;
 allQs:IQuestion[]=[];
-emptyQ:INewQ = {
+emptyQ:IQuestion = {
       examId:0,
       type:"",
       body:"",
@@ -50,16 +50,15 @@ emptyQ:INewQ = {
         }
       ]
 }
-newQs:INewQ[] = []; 
+newQs:IQuestion[] = []; 
 
   ngOnInit(): void {
 
     this.active.params.subscribe(params=>{
-      this.examid = params['id'];
-      this.mySub = this.examService.getExamById(this.examid).subscribe({
+      this.examId = params['id'];
+      this.mySub = this.examService.getExamById(this.examId).subscribe({
         next :(resp)=>{
           this.allQs = resp.question;
-          console.log(this.allQs);
           this.cdr.detectChanges();
         },
         error:(err)=>{
@@ -70,43 +69,14 @@ newQs:INewQ[] = [];
   
   }
 
-  savetoDB(){
-
-    this.allQs.forEach(element => {
-      this.mySub = this.questionService.editQuestion(element, element.id).subscribe({
-        next :(resp)=>{
-          console.log(resp);
-        },
-        error:(err)=>{
-          console.log(err);
-        }
-      })
-    });
-    
-    this.newQs.forEach(element => {
-
-      this.mySub = this.questionService.addQuestion(element).subscribe({
-        next :(resp)=>{
-          console.log(resp);
-          location.reload();
-        },
-        error:(err)=>{
-          console.log(err);
-        }
-      })
-
-    });
-
-  }
-
   AddnewQ(){
     let q = this.deepcopy(this.emptyQ);
-    q.examId = this.examid;
+    q.examId = this.examId;
     this.newQs.push(q);
   }
 
 
-  deepcopy(q: INewQ): INewQ {
+  deepcopy(q: IQuestion): IQuestion {
   return {
     ...q,
     answers: q.answers.map(a => ({ ...a }))
@@ -116,8 +86,8 @@ newQs:INewQ[] = [];
   updateQuestions(flag:boolean) {
     if (flag) {
       this.active.params.subscribe(params=>{
-        this.examid = params['id'];
-        this.mySub = this.examService.getExamById(this.examid).subscribe({
+        this.examId = params['id'];
+        this.mySub = this.examService.getExamById(this.examId).subscribe({
           next :(resp)=>{
             this.allQs = resp.question;
             console.log(this.allQs);

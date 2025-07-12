@@ -7,29 +7,10 @@
         }
 
 
-        @for (new of newQs; track $index) {
-          <div class="bg-white rounded-5 p-4 my-4">
-            <div class="my-3">
-              <label class="form-label fs-4">Question</label>
-              <input [(ngModel)]="new.body" class="custom-input" placeholder="Enter Question">  
-            </div>
-
-            <div class="my-3">
-              <label class="form-label fs-4">Grade</label>
-              <input [(ngModel)]="new.grade" class="custom-input">  
-            </div>
-            @for (ans of new.answers; track $index) {
-              <div>
-                <label class="form-label fs-4">Answer {{$index + 1}} @if($index == 0) {(True Answer)}</label>
-                <input [(ngModel)]="ans.answerText" class="custom-input" placeholder="Enter Answer">
-              </div>
-            }
-          </div>
+        @for (question of newQs; track $index) {
+          <app-edit-question-card [question]="question"></app-edit-question-card>
         }
-        <div class="d-flex justify-content-center gap-4">
-          <button (click)="savetoDB()" class="custom-button" > Save All </button>
-          <button  class="custom-button" (click)="AddnewQ()" > Add Question </button>
-        </div>
+        <button class="custom-button mx-auto" (click)="AddnewQ()" > Add Question </button>
       </div>
 </section>
 

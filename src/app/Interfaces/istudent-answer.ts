@@ -1,5 +1,5 @@
 export interface IStudentAnswer {
-    StudentId:number,
-    QuestionId:number,
-    AnswerId:number
+    StudentId:number;
+    QuestionId:number;
+    AnswerId:number;
 }
