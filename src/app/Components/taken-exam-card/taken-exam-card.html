@@ -1,9 +1,18 @@
 <div class="exam-card bg-white rounded-3 py-4 px-3 shadow-lg">
-    <div class="exam-card-body">
-        <h4 class="exam-card-title">
-        <strong>Exam: </strong><span class="text-black ms-3">{{ exam.examName }}</span></h4>
-        <h4 class="exam-card-text">
-            <strong>Grade: </strong> <span class="text-black ms-3">{{ exam.studentGrade }}</span> <br />
-        </h4>
-    </div>
+  <div class="exam-card-body">
+    <h4 class="exam-card-title">
+      <strong>Exam: </strong>
+      <span class="text-black ms-3">{{ exam.examName }}</span>
+    </h4>
+    <h4 class="exam-card-text">
+      <strong>Grade: </strong>
+      <span class="text-black ms-3">{{ exam.studentGrade }}</span> <br />
+    </h4>
+
+    <button 
+      class="btn btn-primary mt-3"
+      [routerLink]="['/student', studentID, 'exams', exam.examID]">
+      View Details
+    </button>
+  </div>
 </div>

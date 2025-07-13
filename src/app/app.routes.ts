@@ -12,6 +12,7 @@ import { ExamQuestions } from './Components/exam-questions/exam-questions';
 import { TakeExam } from './Pages/take-exam/take-exam';
 import { AuthGuard, AdminGuard, StudentGuard } from './guards/auth.guard';
 import { Result } from './Components/result/result';
+import { StudentExamAnswer } from './Components/student-exam-answer/student-exam-answer';
 
 export const routes: Routes = [
     {path: "", redirectTo: "home", pathMatch: "full"},
