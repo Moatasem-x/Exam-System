@@ -10,9 +10,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './exam-card.css'
 })
 export class ExamCard implements OnInit {
+  studentId!: string ;
   constructor(private examService:ExamService) {}
     @Input() exam!:IExam ;
   ngOnInit(): void {
+    this.studentId = localStorage.getItem('user_id') || '';
     console.log(this.exam);
     this.examService.getExamById(this.exam.id).subscribe({
       next: (resp) => {

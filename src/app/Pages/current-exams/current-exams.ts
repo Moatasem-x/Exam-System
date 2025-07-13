@@ -14,14 +14,14 @@ import { ExamCard } from "../../Components/exam-card/exam-card";
 })
 export class CurrentExams {
   mySub1!: Subscription;
-  baseUrl: string = 'https://localhost:7191/api/Student/1/available';
-  baseUrl2: string = 'https://localhost:7191/api/StudentAnswer';
+  baseUrl: string = 'https://localhost:7032/api/Student/1/available';
+  baseUrl2: string = 'https://localhost:7032/api/StudentAnswer';
   protected title = 'website';
   constructor(private examService:ExamService, private cdr:ChangeDetectorRef, private activatedRoute:ActivatedRoute) {}
   exams:Array<IExam>=[];
   ngOnInit(): void {
 
-    this.mySub1 = this.examService.getExams().subscribe({
+    this.mySub1 = this.examService.getAvailbleExams(Number(localStorage?.getItem('user_id'))).subscribe({
       next:(resp)=>{
         this.exams=resp;
         this.cdr.detectChanges();

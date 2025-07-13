@@ -9,9 +9,9 @@ import { HttpClient } from '@angular/common/http';
 export class StudentExamService {
 
   constructor(private http:HttpClient) { }
-  baseURL:string = "https://localhost:7191/api/StudentExam";
+  baseURL:string = "https://localhost:7032/api/StudentExam";
 
   addStudentExamData(stExamData:IStudentExamData):Observable<IStudentExamData> {
-    return this.http.post<IStudentExamData>(this.baseURL,stExamData);
+    return this.http.post<IStudentExamData>(`${this.baseURL}/${localStorage.getItem('user_id')}`,stExamData);
   }
 }
