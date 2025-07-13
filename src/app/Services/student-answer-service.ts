@@ -10,9 +10,9 @@ export class StudentAnswerService {
 
   constructor(private http:HttpClient) { }
 
-  baseURL:string = "https://localhost:7191/api/StudentAnswer";
+  baseURL:string = "https://localhost:7032/api/StudentAnswer";
 
   submitAnswers(stAnswer:Array<IStudentAnswer>):Observable<Array<IStudentAnswer>> {
-    return this.http.post<Array<IStudentAnswer>>(this.baseURL,stAnswer);
+    return this.http.post<Array<IStudentAnswer>>(`${this.baseURL}/${localStorage.getItem('user_id')}`,stAnswer);
   }
 }

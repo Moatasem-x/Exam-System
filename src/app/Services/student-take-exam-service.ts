@@ -10,7 +10,7 @@ export class StudentTakeExamService {
 
   constructor(private http:HttpClient) { }
 
-  baseURL:string = "https://localhost:7191/api/Student/student";
+  baseURL:string = "https://localhost:7032/api/Student";
 
   getExam(eId:string, stId:string):Observable<IExam> {
     return this.http.get<IExam>(`${this.baseURL}/${stId}/Exam/${eId}`);

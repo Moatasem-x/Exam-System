@@ -22,7 +22,7 @@ export class TakeExam implements OnInit {
   mySub1!: Subscription;
 
  
-  baseUrl2: string = 'https://localhost:7191/api/StudentAnswer';
+  baseUrl2: string = 'https://localhost:7032/api/StudentAnswer';
   protected title = 'website';
   q:IQuestion[]=[];
   constructor(private cdr:ChangeDetectorRef,
@@ -42,6 +42,7 @@ export class TakeExam implements OnInit {
     this.r.params.subscribe(params=>{
       this.examId = params['eid'];
       this.stId = params['stid'];
+      console.log(this.examId, this.stId);
     })
 
     this.mySub1 = this.studentTakeExamService.getExam(this.examId, this.stId).subscribe({
@@ -85,7 +86,7 @@ saveAnswers(): void {
     grade:q.grade
   }));
   const result:Array<IStudentAnswer> = Object.entries(this.examForm.value).map(([questionId, answerId]) => ({
-    StudentId:1,
+    StudentId: Number(this.stId),
     QuestionId: Number(questionId),
     AnswerId: Number(answerId)
   }));
@@ -99,6 +100,7 @@ saveAnswers(): void {
   }
 
   this.studentAnswerService.submitAnswers(result).subscribe({
+
     next:(res)=>{
       console.log(res);
     },

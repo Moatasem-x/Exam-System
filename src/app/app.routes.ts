@@ -10,19 +10,21 @@ import { StudentExams } from './Components/student-exams/student-exams';
 import { AddExam } from './Components/add-exam/add-exam';
 import { ExamQuestions } from './Components/exam-questions/exam-questions';
 import { TakeExam } from './Pages/take-exam/take-exam';
+import { AuthGuard, AdminGuard, StudentGuard } from './guards/auth.guard';
+import { Result } from './Components/result/result';
 
 export const routes: Routes = [
     {path: "", redirectTo: "home", pathMatch: "full"},
     {path:"home", component: Home},
     {path: "register", component: Register},
     {path: "login", component: Login},
-    {path: "exams", component: CurrentExams},
-    {path: "stdash", component: Dashboard},
-    {path: "admindash", component: AdminDashboard},
-    {path: "students" ,component : AllStudents },
-    {path: "student/:id/exams" ,component : StudentExams },
-    {path: "newexam", component: AddExam},
-    {path:"examquestions/:id",component:ExamQuestions},
-    {path: "takeexam/:eid/:stid", component: TakeExam}
-
+    {path: "exams", component: CurrentExams, canActivate: [AuthGuard]},
+    {path: "stdash", component: Dashboard, canActivate: [StudentGuard]},
+    {path: "admindash", component: AdminDashboard, canActivate: [AdminGuard]},
+    {path: "students", component: AllStudents, canActivate: [AdminGuard]},
+    {path: "student/:id/exams", component: StudentExams, canActivate: [AdminGuard]},
+    {path: "newexam", component: AddExam, canActivate: [AdminGuard]},
+    {path:"examquestions/:id", component: ExamQuestions, canActivate: [AdminGuard]},
+    {path: "takeexam/:eid/:stid", component: TakeExam, canActivate: [StudentGuard]},
+    {path: "result", component: Result, canActivate: [StudentGuard]}
 ];

@@ -10,9 +10,9 @@ export class QuestionService {
 
   constructor(private http: HttpClient) {
   }
-  baseURL: string = "https://localhost:7191/api/Question";
-  AdminUrl = 'https://localhost:7191/api/admin';
-  StudentURL = 'https://localhost:7191/api/student';
+  baseURL: string = "https://localhost:7032/api/Question";
+  AdminUrl = 'https://localhost:7032/api/admin';
+  StudentURL = 'https://localhost:7032/api/student';
 
   getQuestions(): Observable<Array<IQuestion>> {
     return this.http.get<Array<IQuestion>>(this.baseURL);
