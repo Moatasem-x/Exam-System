@@ -22,12 +22,13 @@ export const routes: Routes = [
     {path:"home", component: Home},
     {path: "register", component: Register},
     {path: "login", component: Login},
-    {path: "exams", component: CurrentExams},
-    {path: "stdash", component: Dashboard},
-    {path: "admindash", component: AdminDashboard},
-    {path: "students" ,component : AllStudents },
-    {path: "student/:id/exams" ,component : StudentExams },
-    {path: "student/:studentID/exams/:examID" ,component : StudentExamAnswer }
-
-
+    {path: "exams", component: CurrentExams, canActivate: [AuthGuard]},
+    {path: "stdash", component: Dashboard, canActivate: [StudentGuard]},
+    {path: "admindash", component: AdminDashboard, canActivate: [AdminGuard]},
+    {path: "students", component: AllStudents, canActivate: [AdminGuard]},
+    {path: "student/:id/exams", component: StudentExams, canActivate: [AdminGuard]},
+    {path: "newexam", component: AddExam, canActivate: [AdminGuard]},
+    {path:"examquestions/:id", component: ExamQuestions, canActivate: [AdminGuard]},
+    {path: "takeexam/:eid/:stid", component: TakeExam, canActivate: [StudentGuard]},
+    {path: "result", component: Result, canActivate: [StudentGuard]}
 ];
