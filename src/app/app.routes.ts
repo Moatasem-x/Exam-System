@@ -13,9 +13,6 @@ import { TakeExam } from './Pages/take-exam/take-exam';
 import { AuthGuard, AdminGuard, StudentGuard } from './guards/auth.guard';
 import { Result } from './Components/result/result';
 import { StudentExamAnswer } from './Components/student-exam-answer/student-exam-answer';
-import { AddExam } from './Components/add-exam/add-exam';
-import { ExamQuestions } from './Components/exam-questions/exam-questions';
-import { TakeExam } from './Pages/take-exam/take-exam';
 
 export const routes: Routes = [
     {path: "", redirectTo: "home", pathMatch: "full"},
@@ -30,5 +27,6 @@ export const routes: Routes = [
     {path: "newexam", component: AddExam, canActivate: [AdminGuard]},
     {path:"examquestions/:id", component: ExamQuestions, canActivate: [AdminGuard]},
     {path: "takeexam/:eid/:stid", component: TakeExam, canActivate: [StudentGuard]},
-    {path: "result", component: Result, canActivate: [StudentGuard]}
+    {path: "result", component: Result, canActivate: [StudentGuard]},
+    {path: "student/:studentID/exams/:examID" ,component : StudentExamAnswer }
 ];

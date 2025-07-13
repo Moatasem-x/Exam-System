@@ -11,11 +11,15 @@ export class ExamService {
 
   constructor(private http: HttpClient) {
   }
-  baseURL: string = "https://localhost:7191/api/Exam";
-  StudentURL = 'https://localhost:7191/api/student';
+  baseURL: string = "https://localhost:7032/api/Exam";
+  StudentURL = 'https://localhost:7032/api/student';
 
   getExams(): Observable<Array<IExam>> {
     return this.http.get<Array<IExam>>(this.baseURL);
+  }
+
+  getAvailbleExams(stId:number): Observable<Array<IExam>> {
+    return this.http.get<Array<IExam>>(`${this.StudentURL}/${stId}/available`);
   }
 
   getExamById(id: number): Observable<IExam> {

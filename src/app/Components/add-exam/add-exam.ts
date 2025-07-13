@@ -32,7 +32,7 @@ export class AddExam {
     return this.newExamForm.controls['duration'];
   }
 AddExam(){
-  let url = "https://localhost:7191/api/Exam";
+  let url = "https://localhost:7032/api/Exam";
   if(this.newExamForm.status=="VALID"){
     
     let examData={
