@@ -1,19 +1,27 @@
-<div class="container my-5">
-  <h1 class="mb-5 text-center">Taken Exams</h1>
-  <div class="row gy-4 justify-content-center">
-    @for (exam of exams; track exam.examId) 
-    {
-      <div class="col-xl-4 col-lg-6 col-md-8 col-9">
-        <app-taken-exam-card [exam]="exam"></app-taken-exam-card>
-      </div>
-    }
-  </div>
+<div class="container mt-4">
+  <h3 class="mb-4">Taken Exams</h3>
 
-  @if (exams.length == 0) 
-  {
+  <div class="row">
+    <div class="col-md-6 mb-3" *ngFor="let currentExam of exams">
+      <div class="card shadow-sm">
+        <!-- <div class="card-body">
+          <h5 class="card-title">{{ exam.examName }}</h5>
+          <p class="card-text">
+            <strong>Grade:</strong> {{ exam.studentGrade }}
+          </p>
+          <button class="btn btn-primary mt-3" [routerLink]="['/student', StudentId, 'exams', exam.examID]">
+            View Student Answers 
+          </button>
+        </div> -->
+        <app-taken-exam-card [exam]="currentExam" [studentID]="StudentId"></app-taken-exam-card>
+      </div>
+    </div>
+
+    @if (exams.length == 0)
+    {
     <div class="alert alert-info">
       <p class="fs-4">This student has not taken any exams yet.</p>
     </div>
-  }
+    }
 
-</div>
+  </div>

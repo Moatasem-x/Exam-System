@@ -1,0 +1,19 @@
+<div class="exam-card">
+  <h2>{{exam.name}}</h2>
+
+  <div *ngFor="let q of questions" class="question-block">
+    <p class="question-text">
+      <strong>Q{{ q.questionId }}:</strong> {{ q.questionText }} <span class="grade">(Grade: {{ q.grade }})</span>
+    </p>
+<ul>
+  <li *ngFor="let a of q.answers"
+      [ngClass]="{
+        'correct': a.answerId === q.correctAnswerId,
+        'wrong': a.answerId === q.studentAnswerId && q.studentAnswerId !== q.correctAnswerId,
+        'chosen-correct': a.answerId === q.correctAnswerId && a.answerId === q.studentAnswerId
+      }">
+    {{ a.answerText }}
+  </li>
+</ul>
+  </div>
+</div>
