@@ -12,7 +12,7 @@ import { IStudentExamData } from '../../Interfaces/istudent-exam-data';
   styleUrl: './student-exams.css'
 })
 export class StudentExams implements OnInit{
-  exams: any = [];
+  exams: Array<IStudentExamData> = [];
   StudentId !: any
   constructor(private apiservice: ExamService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) { }
   ngOnInit(): void {
