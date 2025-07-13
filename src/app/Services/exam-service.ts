@@ -15,7 +15,7 @@ export class ExamService {
   StudentURL = 'https://localhost:7191/api/student';
 
   getExams(): Observable<Array<IExam>> {
-    return this.http.get<Array<IExam>>(this.examURL);
+    return this.http.get<Array<IExam>>(this.baseURL);
   }
 
   getExamById(id: number): Observable<IExam> {
