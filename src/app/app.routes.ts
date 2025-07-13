@@ -7,6 +7,7 @@ import { Dashboard } from './Components/dashboard/dashboard';
 import { AdminDashboard } from './Components/admin-dashboard/admin-dashboard';
 import { AllStudents } from './Components/all-students/all-students';
 import { StudentExams } from './Components/student-exams/student-exams';
+import { StudentExamAnswer } from './Components/student-exam-answer/student-exam-answer';
 
 export const routes: Routes = [
     {path: "", redirectTo: "home", pathMatch: "full"},
@@ -17,7 +18,8 @@ export const routes: Routes = [
     {path: "stdash", component: Dashboard},
     {path: "admindash", component: AdminDashboard},
     {path: "students" ,component : AllStudents },
-    {path: "student/:id/exams" ,component : StudentExams }
+    {path: "student/:id/exams" ,component : StudentExams },
+    {path: "student/:studentID/exams/:examID" ,component : StudentExamAnswer }
 
 
 ];

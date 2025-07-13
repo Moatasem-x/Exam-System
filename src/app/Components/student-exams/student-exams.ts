@@ -7,13 +7,13 @@ import { IStudentExamData } from '../../Interfaces/istudent-exam-data';
 
 @Component({
   selector: 'app-student-exams',
-  imports: [CommonModule],
+  imports: [CommonModule, TakenExamCard],
   templateUrl: './student-exams.html',
   styleUrl: './student-exams.css'
 })
 export class StudentExams implements OnInit{
   exams: any = [];
-  id !: any
+  StudentId !: any
   constructor(private apiservice: ExamService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) { }
   ngOnInit(): void {
     this.StudentId = Number(this.route.snapshot.paramMap.get('id'));

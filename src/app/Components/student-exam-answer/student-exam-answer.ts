@@ -14,8 +14,8 @@ questions: any[] = [];
 exam !: any ;
 constructor(private examService: ExamService , private route: ActivatedRoute, private cdr: ChangeDetectorRef) {}
 ngOnInit() {
-  const studentId = Number(this.route.snapshot.paramMap.get('studentId'));
-  const examId = Number(this.route.snapshot.paramMap.get('examId'));
+  const studentId = Number(this.route.snapshot.paramMap.get('studentID'));
+  const examId = Number(this.route.snapshot.paramMap.get('examID'));
 
   console.log('Student:', studentId, 'Exam:', examId);
   this.examService.getExamById(examId).subscribe({
