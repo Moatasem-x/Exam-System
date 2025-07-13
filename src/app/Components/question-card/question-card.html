@@ -30,7 +30,7 @@
                     <div formArrayName="answers">
                         @for (ans of question.answers; track $index) {
                         <div class="my-3">
-                            <label class="form-label fs-4">Answer {{$index+1}} @if($index == 0) {(True Answer)}</label>
+                            <label class="form-label fs-4">Answer {{$index+1}} @if(ans.isCorrect) {(True Answer)}</label>
                             <input [formControlName]="$index" class="custom-input">
                         </div>
                         }

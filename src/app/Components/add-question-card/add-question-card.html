@@ -17,6 +17,12 @@
                 </div>
             }
         </div>
-        <button type="submit" class="custom-button-outline ms-auto me-1">Save</button>
+        <button 
+        [swal]="{title: 'Confirmation', text: 'Add New Question?', showCancelButton: true}"
+        (confirm)="addQuestion()"
+        type="submit" 
+        class="custom-button-outline ms-auto me-1">
+            Save
+        </button>
     </form>
 </div>

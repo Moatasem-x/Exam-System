@@ -50,9 +50,13 @@ emptyQ:IQuestion = {
       ]
 }
 newQs:IQuestion[] = []; 
+addedQuestion!:IQuestion;
 
   ngOnInit(): void {
+    this.loadQuestions();
+  }
 
+  loadQuestions(){
     this.active.params.subscribe(params=>{
       this.examId = params['id'];
       this.mySub = this.examService.getExamById(this.examId).subscribe({
@@ -65,10 +69,9 @@ newQs:IQuestion[] = [];
         }
       })
     })
-  
   }
 
-  AddnewQ(){
+  AddEmptyQuestion(){
     let q = this.deepcopy(this.emptyQ);
     q.examId = this.examId;
     this.newQs.push(q);
@@ -82,22 +85,13 @@ newQs:IQuestion[] = [];
   };
   }
 
-  updateQuestions(flag:boolean) {
-    if (flag) {
-      this.active.params.subscribe(params=>{
-        this.examId = params['id'];
-        this.mySub = this.examService.getExamById(this.examId).subscribe({
-          next :(resp)=>{
-            this.allQs = resp.question;
-            console.log(this.allQs);
-            this.cdr.detectChanges();
-          },
-          error:(err)=>{
-            console.log(err);
-          }
-        })
-      })
-    }
+  updateQuestions(qid:number) {
+    this.allQs = this.allQs.filter(item => item.id != qid);
+  }
+
+  addNewQuestion(q:IQuestion){
+    this.newQs.splice(this.newQs.indexOf(q), 1);
+    this.loadQuestions();
   }
       
 
