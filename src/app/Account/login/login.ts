@@ -38,6 +38,7 @@ export class Login {
         next: (response) => {
           console.log('Login successful:', response);
           // Redirect based on role
+          console.log(response.role)
           if (response.role === 'Admin') {
             this.router.navigate(['/admindash']);
           } else {
