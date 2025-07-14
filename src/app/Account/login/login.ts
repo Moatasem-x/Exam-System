@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { LoginRequest } from '../../models/auth.models';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class Login {
     "password": new FormControl("", [Validators.required])
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
   getEmail() {
     return this.loginForm.controls.email;
@@ -42,12 +43,18 @@ export class Login {
           } else {
             this.router.navigate(['/stdash']);
           }
+          this.showSuccess();
+          
         },
         error: (error) => {
           console.error('Login failed:', error);
-          // Handle error (show message to user)
+          this.toastr.error('Failed!', 'Login Attempt!');
         }
       });
     }
+  }
+
+  showSuccess() {
+    this.toastr.success('Success!', 'Login Attempt!');
   }
 }

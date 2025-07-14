@@ -1,7 +1,7 @@
 import { HttpClient, withXsrfConfiguration } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-add-exam',
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 export class AddExam {
 
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient, private router:Router) {}
 
  newExamForm  = new FormGroup({
     name:new FormControl('',[Validators.required,Validators.minLength(5),Validators.pattern('^[a-zA-Z 0-9]+$')]),
@@ -44,6 +44,7 @@ AddExam(){
     this.http.post(url,examData).subscribe({
       next:(resp)=>{
         console.log(resp);
+        this.router.navigateByUrl("/exams");
       },
       error:(err)=>{
         console.log(err);

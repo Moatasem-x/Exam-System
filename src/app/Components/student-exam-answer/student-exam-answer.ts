@@ -30,7 +30,9 @@ ngOnInit() {
       console.log(res);
       this.cdr.detectChanges();
     },
-    error: err => console.error('Failed to load exam answers', err)
+    error: (err) => {
+      console.error('Failed to load exam answers', err)
+    }
   });
 }
 

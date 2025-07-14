@@ -48,6 +48,9 @@ export class TakeExam implements OnInit {
     this.mySub1 = this.studentTakeExamService.getExam(this.examId, this.stId).subscribe({
       next:(resp)=>{
         this.q = resp.question;
+        this.q.forEach(que => {
+          que.answers = this.shuffleAnswers(que.answers);
+        });
         this.examTitle = resp.name;
         this.buildForm();
         this.cdr.detectChanges();
@@ -137,4 +140,8 @@ saveAnswers(): void {
     return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}T${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
 
   }
+
+  shuffleAnswers(answers: any[]): any[] {
+    return answers.sort(() => Math.random() - 0.5);
+  } 
 }

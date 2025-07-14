@@ -1,30 +1,56 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid py-3 px-md-5 px-4 text-white">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Examine</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item mx-3">
-          <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="'text-danger'">Home</a>
+          @if (isAuth) {
+            @if (userRole == "Student") {
+              <a class="nav-link" [routerLink]="['/stdash']" [routerLinkActive]="'text-danger'">Home</a>
+            }
+            @else {
+              <a class="nav-link" [routerLink]="['/admindash']" [routerLinkActive]="'text-danger'">Home</a>
+            }
+          }
+          @else {
+            <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="'text-danger'">Home</a>
+          }
         </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" [routerLink]="['/exams']" [routerLinkActive]="'text-danger'">Exams</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="'text-danger'">Login</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" [routerLink]="['/register']" [routerLinkActive]="'text-danger'">Signup</a>
-        </li>
-
-        <li class="nav-item mx-3">
-          <a class="nav-link" [routerLink]="['/newexam']" [routerLinkActive]="'text-danger'">Add new Exam</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" [routerLink]="['/students']" [routerLinkActive]="'text-danger'">Students</a>
-        </li>
+        @if (isAuth) {
+          <li class="nav-item mx-3">
+            <a class="nav-link" [routerLink]="['/exams']" [routerLinkActive]="'text-danger'">Exams</a>
+          </li>
+          @if (userRole == "Admin") {
+            <li class="nav-item mx-3">
+              <a class="nav-link" [routerLink]="['/newexam']" [routerLinkActive]="'text-danger'">Add new Exam</a>
+            </li>
+            <li class="nav-item mx-3">
+              <a class="nav-link" [routerLink]="['/students']" [routerLinkActive]="'text-danger'">Students</a>
+            </li>
+          }
+          @else {
+            <li class="nav-item mx-3">
+              <a class="nav-link" [routerLink]="['/student', stId, 'exams']" [routerLinkActive]="'text-danger'">Taken Exams</a>
+            </li>
+          }
+        }
+        
+        @if (!isAuth) {
+          <li class="nav-item mx-3">
+            <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="'text-danger'">Login</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" [routerLink]="['/register']" [routerLinkActive]="'text-danger'">Signup</a>
+          </li>
+        }
+        @else {
+          <li class="nav-item mx-3">
+            <a class="nav-link" [routerLink]="['/login']" [routerLinkActive]="'text-danger'" (click)="logout()">Logout</a>
+          </li>
+        }
       </ul>
     </div>
   </div>

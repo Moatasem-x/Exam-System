@@ -1,4 +1,4 @@
-<!-- 🧑‍🎓 Header Section -->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Nearly There... </p></ngx-spinner>
 <section class="profile-banner d-flex align-items-center justify-content-between px-3 py-4 mb-4 shadow-sm rounded-3">
   <div>
     <h2 class="h4 fw-bold mb-1">Hey, {{ student.name }} 👋</h2>
@@ -8,7 +8,7 @@
 </section>
 
 <section class="overview-panels d-flex flex-column gap-3 mb-4">
-  @for (stat of stats; track stat) {
+  @for (stat of stats; track $index) {
     <div class="overview-item d-flex justify-content-between align-items-center p-3 border rounded shadow-sm bg-white">
       <div>
         <h6 class="text-muted text-uppercase small mb-1">{{ stat.title }}</h6>
@@ -29,7 +29,7 @@
       </div>
       <span class="badge bg-success-subtle text-success">Updated</span>
     </div>
-    <app-scorechart></app-scorechart>
+    <app-scorechart [score]="stats[1].value"></app-scorechart>
   </div>
 
   <div class="widget-box bg-light p-3 rounded border shadow-sm">
@@ -39,6 +39,6 @@
         <p class="fw-bold mb-0 small">📚 Performance</p>
       </div>
     </div>
-    <app-categorychart></app-categorychart>
+    <app-categorychart [takenExams]="takenExams"></app-categorychart>
   </div>
 </section>

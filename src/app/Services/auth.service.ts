@@ -20,6 +20,7 @@ export class AuthService {
   }
 
   register(data: RegisterRequest): Observable<AuthResponse> {
+    console.log(data);
     return this.http.post<AuthResponse>(`${this.API_URL}/register`, data)
       .pipe(
         tap(response => this.handleAuthSuccess(response))
@@ -33,11 +34,8 @@ export class AuthService {
       );
   }
 
-  logout(): Observable<any> {
-    return this.http.post(`${this.API_URL}/logout`, {})
-      .pipe(
-        tap(() => this.handleLogout())
-      );
+  logout() {
+    this.handleLogout();
   }
 
   getCurrentUser(): Observable<User> {
@@ -53,31 +51,28 @@ export class AuthService {
       lastName: response.lastName,
       role: response.role
     };
-    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    // localStorage.setItem(this.USER_KEY, JSON.stringify(user));
     this.currentUserSubject.next(user);
     localStorage.setItem('user_id', user.id); // Store user ID for easy access
     localStorage.setItem('user_role', user.role); // Store user role for easy access
     localStorage.setItem('user_email', user.email); // Store user email for easy access
-    localStorage.setItem('user_name', `${user.firstName} ${user.lastName}`); // Store user full name for easy access
-    localStorage.setItem('user_first_name', user.firstName); // Store user's first name
-    localStorage.setItem('user_last_name', user.lastName); // Store user's last name        
+    localStorage.setItem('user_name', `${user.firstName}`); // Store user full name for easy access
 
   }
 
   private handleLogout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.USER_KEY);
+    // localStorage.removeItem(this.TOKEN_KEY);
+    // localStorage.removeItem(this.USER_KEY);
+    localStorage.clear();
     this.currentUserSubject.next(null);
   }
 
   private loadUserFromStorage(): void {
-    const token = localStorage.getItem(this.TOKEN_KEY);
-    const userData = localStorage.getItem(this.USER_KEY);
-    
-    if (token && userData) {
-      const user: User = JSON.parse(userData);
-      this.currentUserSubject.next(user);
+    if(typeof window !== 'undefined' && window.localStorage) {
+      const token = localStorage.getItem(this.TOKEN_KEY);
+      const userData = localStorage.getItem(this.USER_KEY);
     }
+
   }
 
   getToken(): string | null {
@@ -87,7 +82,7 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = this.getToken();
     if (!token) return false;
-    return true; // You can add more checks here, like token expiration
+    return true; 
   }
 
   getCurrentUserValue(): User | null {
@@ -95,8 +90,8 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    const user = this.getCurrentUserValue();
-    return user?.role === 'Admin';
+    const user = localStorage.getItem('user_role');
+    return user === 'Admin';
   }
 
   isStudent(): boolean {

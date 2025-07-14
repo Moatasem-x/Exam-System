@@ -2,6 +2,6 @@
     <h1 class="text-center">Current Exams</h1>
     @for (exam of exams; track exam.id) 
     {
-        <app-exam-card [exam]="exam"></app-exam-card>
+        <app-exam-card [exam]="exam" (deleteEmitter)="updateExams($event)"></app-exam-card>
     }
 </section>

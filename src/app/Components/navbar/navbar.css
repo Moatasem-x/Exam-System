@@ -1,3 +1,5 @@
+
+
 .navbar
 {
     background-color: #271b55;
@@ -6,11 +8,14 @@
 .navbar-brand
 {
     color: #fff;
+    font-family: "Irish Grover", system-ui;
+    font-size: 2rem;
 }
 
 .nav-link
 {
     color: #fff;
+    font-size: 1.2rem;
 }
 
 .navbar-toggler-icon 

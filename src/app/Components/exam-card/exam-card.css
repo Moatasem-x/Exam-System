@@ -1,22 +1,28 @@
-.exam-card
-{
-    border-top: 2px solid #271b55;
-    border-bottom: 2px solid #271b55;
-    background-color: #a7b7ec;
-    border-radius: 20px;
-    h4 
-    {
-        color: #322b50;
-    }
-    transition: transform 0.25s ease-in-out;
+
+
+
+.exam-card {
+  border: 1px solid #271b55;
+  background-color: #f4f6fc;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 12px rgba(39, 27, 85, 0.15);
+  transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
 }
 
-.exam-card:hover
-{
-    transform: scale(1.009);
+.exam-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(39, 27, 85, 0.25);
+}
+
+.exam-card h4 {
+  color: #271b55;
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
 button
 {
     font-family: "Itim", cursive;
 }
+

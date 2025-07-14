@@ -13,11 +13,11 @@ import { IStudentExamData } from '../../Interfaces/istudent-exam-data';
 })
 export class StudentExams implements OnInit{
   exams: Array<IStudentExamData> = [];
-  StudentId !: any
+  StudentId!:number;
   constructor(private apiservice: ExamService, private route: ActivatedRoute, private cdr: ChangeDetectorRef) { }
   ngOnInit(): void {
-    this.StudentId = Number(this.route.snapshot.paramMap.get('id'));
-
+    this.StudentId = Number(this.route.snapshot.paramMap.get('studentID'));
+    console.log(this.StudentId);
     this.apiservice.getStudentTakenExams(this.StudentId).subscribe({
       next: (res) => {
         console.log(res);

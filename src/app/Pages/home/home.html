@@ -13,7 +13,9 @@
                     <br/>
                     Whether you are a student ot an instructor, Examine helps you manage everything from one simple platform
                 </p>
-                <button [routerLink]="['/register']" class="custom-button d-block mx-auto mt-4">Join Us</button>
+                @if (!isAuth) {
+                    <button [routerLink]="['/register']" class="custom-button d-block mx-auto mt-4">Join Us</button>
+                }
             </div>
         </div>
     </div>

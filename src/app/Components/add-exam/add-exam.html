@@ -40,7 +40,7 @@
                   Duration Is Required
                 </div>
             }
-          }
+          
           @if(getDuration.hasError('pattern')){
                 <div  class="text-danger">
                   Duration Should HaveOnly Numbers  
@@ -56,14 +56,10 @@
                   Maximum Duration Is 300 minutes  
                 </div>
               }
+            }
         </div>
-
-
-
       </div>
-
-
-      <button type="submit" class="custom-button ms-auto" [routerLink]="['/exams']">Save</button>
+      <button type="submit" class="custom-button ms-auto">Save</button>
     </form>
   </div>
 </section>

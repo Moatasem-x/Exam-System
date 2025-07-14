@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IExam } from '../../Interfaces/iexam';
 import { ExamService } from '../../Services/exam-service';
@@ -8,7 +8,7 @@ import { ExamCard } from "../../Components/exam-card/exam-card";
 
 @Component({
   selector: 'app-current-exams',
-  imports: [ExamCard],
+  imports: [ExamCard, RouterLink],
   templateUrl: './current-exams.html',
   styleUrl: './current-exams.css'
 })
@@ -19,22 +19,41 @@ export class CurrentExams {
   protected title = 'website';
   constructor(private examService:ExamService, private cdr:ChangeDetectorRef, private activatedRoute:ActivatedRoute) {}
   exams:Array<IExam>=[];
+  userRole:string = localStorage.getItem("user_role") || "";
   ngOnInit(): void {
 
-    this.mySub1 = this.examService.getAvailbleExams(Number(localStorage?.getItem('user_id'))).subscribe({
-      next:(resp)=>{
-        this.exams=resp;
-        this.cdr.detectChanges();
-      },
-      error:(error)=>{
-        console.log(error);
-      }
-    });
+    if(this.userRole == "Student") {
+      this.mySub1 = this.examService.getAvailbleExams(Number(localStorage?.getItem('user_id'))).subscribe({
+        next:(resp)=>{
+          this.exams=resp;
+          this.cdr.detectChanges();
+        },
+        error:(error)=>{
+          console.log(error);
+        }
+      });
+    }
+    else {
+      this.mySub1 = this.examService.getExams().subscribe({
+        next:(resp)=>{
+          this.exams=resp;
+          this.cdr.detectChanges();
+        },
+        error:(error)=>{
+          console.log(error);
+        }
+      });
+    }
+
+    this.stId = localStorage.getItem("user_id") || "";
   
   }
  
-  gotoExam(){
-
+  updateExams(eId:number) {
+    console.log(eId);
+    this.exams = this.exams.filter(element => element.id != eId);
   }
+
+  stId!:string;
 
 }

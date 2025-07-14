@@ -29,4 +29,12 @@ export class ExamService {
   getStudentTakenExams(id: number):Observable<Array<IStudentExamData>> {
     return this.http.get<Array<IStudentExamData>>(`${this.StudentURL}/${id}/results`);
   }
+
+  getStudentExamAnswers( ExamID : number ,StdId:number ){
+    return this.http.get(`${this.baseURL}/${ExamID}/${StdId}`);
+  }
+
+  deleteExam(id:number):Observable<IExam> {
+    return this.http.delete<IExam>(`${this.baseURL}/${id}`);
+  }
 }

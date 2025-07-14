@@ -14,4 +14,8 @@ export class StudentExamService {
   addStudentExamData(stExamData:IStudentExamData):Observable<IStudentExamData> {
     return this.http.post<IStudentExamData>(`${this.baseURL}/${localStorage.getItem('user_id')}`,stExamData);
   }
+
+  getStudentExamData():Observable<Array<IStudentExamData>> {
+    return this.http.get<Array<IStudentExamData>>(this.baseURL);
+  }
 }

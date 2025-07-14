@@ -1,19 +1,21 @@
-<div class="exam-card">
-  <h2>{{exam.name}}</h2>
+<div class="exam-card my-5">
+  <h1 class="text-center">{{exam.name}}</h1>
 
-  <div *ngFor="let q of questions" class="question-block">
-    <p class="question-text">
-      <strong>Q{{ q.questionId }}:</strong> {{ q.questionText }} <span class="grade">(Grade: {{ q.grade }})</span>
-    </p>
-<ul>
-  <li *ngFor="let a of q.answers"
-      [ngClass]="{
-        'correct': a.answerId === q.correctAnswerId,
-        'wrong': a.answerId === q.studentAnswerId && q.studentAnswerId !== q.correctAnswerId,
-        'chosen-correct': a.answerId === q.correctAnswerId && a.answerId === q.studentAnswerId
-      }">
-    {{ a.answerText }}
-  </li>
-</ul>
-  </div>
+  @for (q of questions; track q.id; let i = $index) {
+    <div class="question-block bg-white rounded-5 p-5 my-4">
+      <h5 class="question-text mb-3">
+        <strong>Q{{ i + 1 }}:</strong> {{ q.questionText }} <span class="grade">(Grade: {{ q.grade }})</span>
+      </h5>
+      <ul>
+        <li *ngFor="let a of q.answers"
+            [ngClass]="{
+              'correct': a.answerId === q.correctAnswerId,
+              'wrong': a.answerId === q.studentAnswerId && q.studentAnswerId !== q.correctAnswerId,
+              'chosen-correct': a.answerId === q.correctAnswerId && a.answerId === q.studentAnswerId
+            }">
+          {{ a.answerText }}
+        </li>
+      </ul>
+    </div>
+  }
 </div>

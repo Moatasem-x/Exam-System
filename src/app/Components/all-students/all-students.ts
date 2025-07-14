@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentCard } from "../student-card/student-card";
 import { StudentService } from '../../Services/student-service';
+import { IStudent } from '../../Interfaces/istudent';
 
 @Component({
   selector: 'app-all-students',
@@ -10,12 +11,14 @@ import { StudentService } from '../../Services/student-service';
   styleUrl: './all-students.css'
 })
 export class AllStudents implements OnInit {
-  students : any = [];
- constructor( private studentService : StudentService , private cdr : ChangeDetectorRef) { }
+  students:Array<IStudent> = [];
+  adminEmail:string = localStorage.getItem("user_email") || "";
+  constructor( private studentService : StudentService , private cdr:ChangeDetectorRef) { }
   ngOnInit(): void {
     this.studentService.getStudents().subscribe({
       next : (resp) => {
-        this.students = resp; 
+        this.students = resp;
+        this.students = this.students.filter(st => st.email != this.adminEmail);
         this.cdr.detectChanges();
       },
       error: (error) => 
