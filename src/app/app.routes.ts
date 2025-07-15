@@ -28,7 +28,8 @@ export const routes: Routes = [
     {path: "takeexam/:eid/:stid", component: TakeExam, canActivate: [StudentGuard]},
     {path: "result", component: Result, canActivate: [StudentGuard]},
     {path: "student/:studentID/exams/:examID" ,component : StudentExamAnswer },
-    {path: "student/:studentID/exams" ,component : StudentExams, canActivate: [AuthGuard] }
+    {path: "student/:studentID/exams" ,component : StudentExams, canActivate: [AuthGuard] },
+    {path: "**", redirectTo: "/login"}
 
     // {path: "", redirectTo: "home", pathMatch: "full"},
     // {path:"home", component: Home},
