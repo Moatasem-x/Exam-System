@@ -33,6 +33,10 @@ export class AdminGuard implements CanActivate {
       return true;
     }
     
+    if(this.authService.isAuthenticated())
+    {this.router.navigate(['/stdash']);
+      return false;
+    }
     this.router.navigate(['/login']);
     return false;
   }
@@ -48,7 +52,11 @@ export class StudentGuard implements CanActivate {
     if (this.authService.isAuthenticated() && this.authService.isStudent()) {
       return true;
     }
-    
+    if(this.authService.isAuthenticated())
+    {this.router.navigate(['/admindash']);
+      return false;
+    }
+
     this.router.navigate(['/login']);
     return false;
   }

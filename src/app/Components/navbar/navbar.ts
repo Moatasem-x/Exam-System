@@ -11,9 +11,10 @@ import { AuthService } from '../../Services/auth.service';
 export class Navbar implements OnInit, DoCheck {
   constructor(private authService:AuthService){}
   ngDoCheck(): void {
+    if (typeof window !== 'undefined' && localStorage.getItem("jwt_token")) {
     this.isAuth = this.authService.isAuthenticated();
     this.userRole = localStorage.getItem("user_role") || "";
-    this.stId = localStorage.getItem("user_id") || "";
+    this.stId = localStorage.getItem("user_id") || "";}
 
   }
   isAuth:boolean = false;
@@ -21,9 +22,10 @@ export class Navbar implements OnInit, DoCheck {
   stId:string = "";
   
   ngOnInit(): void {
+    if (typeof window !== 'undefined' && localStorage.getItem("jwt_token")) {
     this.isAuth = this.authService.isAuthenticated();
     this.userRole = localStorage.getItem("user_role") || "";
-    this.stId = localStorage.getItem("user_id") || "";
+    this.stId = localStorage.getItem("user_id") || "";}
 
   }
 
