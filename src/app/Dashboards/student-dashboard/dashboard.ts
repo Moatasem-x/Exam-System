@@ -1,11 +1,11 @@
-import { AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, DoCheck, OnInit } from '@angular/core';
-import { Scorechart } from "./scorechart/scorechart";
-import { Categorychart } from "./categorychart/categorychart";
+import { AfterContentInit, AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ExamService } from '../../Services/exam-service';
 import { Subscription } from 'rxjs';
-import { IStudentExamData } from '../../Interfaces/istudent-exam-data';
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
+import { Scorechart } from './scorechart/scorechart';
+import { Categorychart } from './categorychart/categorychart';
+import { ExamService } from '../../Services/exam-service';
+import { IStudentExamData } from '../../Interfaces/istudent-exam-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +13,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
-export class Dashboard implements OnInit, DoCheck{
+export class Dashboard implements OnInit, DoCheck, OnDestroy{
   constructor(private examService:ExamService, private cdr:ChangeDetectorRef, private spinner: NgxSpinnerService){}
   
   student = { name: localStorage.getItem("user_name") };
@@ -43,9 +43,6 @@ export class Dashboard implements OnInit, DoCheck{
       complete: ()=>{
         this.updateStats();
         this.cdr.detectChanges();
-        setTimeout(() => {
-          this.spinner.hide();
-        }, 1500);
       }
     })
     );
@@ -69,6 +66,9 @@ export class Dashboard implements OnInit, DoCheck{
         // this.stats[1].value = this.avgScore;
         this.updateStats();
         this.cdr.detectChanges();
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 1500);
       }
     }))
   }
@@ -79,8 +79,14 @@ export class Dashboard implements OnInit, DoCheck{
 
   private updateStats(): void {
     this.stats = [
-    { title: 'Total Exams', value: this.totalExams, subtext: `${this.completedExams} completed`, color: 'text-primary' },
-    { title: 'Average Score', value: `${this.avgScore.toFixed(2)}%`, subtext: 'Perfect Performance', color: 'text-success' },
-  ];
-}
+      { title: 'Total Exams', value: this.totalExams, subtext: `${this.completedExams} completed`, color: 'text-primary' },
+      { title: 'Average Score', value: `${this.avgScore.toFixed(2)}%`, subtext: 'Perfect Performance', color: 'text-success' },
+    ];
+  }
+
+  ngOnDestroy(): void {
+    for (let i = 0; i < this.mySub.length; i++) {
+      this.mySub[i].unsubscribe();
+    }
+  }
 }

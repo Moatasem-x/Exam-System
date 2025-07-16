@@ -1,1 +1,74 @@
-<p>add-exam works!</p>
+<section class="bg-white rounded-5 px-4 py-5 my-5">
+  <div class="">
+    <h1 class="text-center">Add New Exam</h1>
+    <form [formGroup]="newExamForm" class="p-5" (submit)="AddExam()" >
+
+
+      <div class="my-4">
+        <div class="form-group my-3">
+          <label for="name">Exam Name</label>
+          <input type="text" class="custom-input my-2" id="name" placeholder="Enter Exam Name"
+          formControlName ="name"
+          >
+          @if(getName.touched){
+            @if(getName.hasError('required')){
+              <div  class="text-danger">
+                Name is Required
+              </div>
+            }
+            @if(getName.hasError('minlength')){
+              <div  class="text-danger">
+                Name's length at least 5
+              </div>
+            }
+            @if(getName.hasError('pattern')){
+              <div  class="text-danger">
+                Name only contains letters and digits 0-9  
+              </div>
+            }
+        }
+        </div>     
+
+        <div class="form-group my-3">
+          <label for="duration">Duration</label>
+          <input type="number" class="custom-input my-2" id="duration" placeholder="Enter Exam Duration"
+          formControlName ="duration"
+          >
+          @if(getDuration.touched){
+            @if(getDuration.hasError('required')){
+                <div  class="text-danger">
+                  Duration Is Required
+                </div>
+            }
+          
+          @if(getDuration.hasError('pattern')){
+                <div  class="text-danger">
+                  Duration Should HaveOnly Numbers  
+                </div>
+              }
+          @if(getDuration.hasError('min')){
+                <div  class="text-danger">
+                  Minimum Duration Is 10 Minutes  
+                </div>
+              }
+          @if(getDuration.hasError('max')){
+                <div  class="text-danger">
+                  Maximum Duration Is 300 minutes  
+                </div>
+              }
+            }
+        </div>
+      </div>
+      <button type="submit" class="custom-button ms-auto">Save</button>
+    </form>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+

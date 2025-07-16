@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IExam } from '../../Interfaces/iexam';
 import { ExamService } from '../../Services/exam-service';
@@ -8,7 +8,7 @@ import { ExamCard } from "../../Components/exam-card/exam-card";
 
 @Component({
   selector: 'app-current-exams',
-  imports: [ExamCard, RouterLink],
+  imports: [ExamCard],
   templateUrl: './current-exams.html',
   styleUrl: './current-exams.css'
 })

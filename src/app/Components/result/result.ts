@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -8,11 +8,21 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './result.html',
   styleUrl: './result.css'
 })
-export class Result {
+export class Result implements OnInit {
   grade:number = 0;
+  examId!:number;
+  stId:string = "";
   
- constructor(private router: Router) {
-    const nav = this.router.getCurrentNavigation();
-    this.grade = nav?.extras.state?.['grade'] ?? 0;
+ constructor(private route: ActivatedRoute) {
+    
   }
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.grade = params['grade'];
+      this.examId = params['examId'];
+    });
+    this.stId = localStorage.getItem("user_id") || "";
+  }
+  
 }

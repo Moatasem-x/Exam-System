@@ -2,8 +2,8 @@ import { Component, numberAttribute, OnInit, ChangeDetectorRef } from '@angular/
 import { ExamService } from '../../Services/exam-service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TakenExamCard } from "../taken-exam-card/taken-exam-card";
 import { IStudentExamData } from '../../Interfaces/istudent-exam-data';
+import { TakenExamCard } from '../../Components/taken-exam-card/taken-exam-card';
 
 @Component({
   selector: 'app-student-exams',

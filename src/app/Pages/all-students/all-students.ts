@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentCard } from "../student-card/student-card";
 import { StudentService } from '../../Services/student-service';
 import { IStudent } from '../../Interfaces/istudent';
+import { StudentCard } from '../../Components/student-card/student-card';
 
 @Component({
   selector: 'app-all-students',

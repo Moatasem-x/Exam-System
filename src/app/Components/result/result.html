@@ -1,5 +1,5 @@
 <section class="m-5 text-center">
   <h1>Your Exam Result</h1>
   <h2>You scored: {{ grade }}</h2>
-  <button class="custom-button-outline mx-auto mt-4" [routerLink]="['/stdash']">Back To Home</button>
+  <button class="custom-button-outline mx-auto mt-4" [routerLink]="['/student', stId, 'exams', examId]">See Exam Answers</button>
 </section>

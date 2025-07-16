@@ -63,7 +63,8 @@ export class AuthService {
   private handleLogout(): void {
     // localStorage.removeItem(this.TOKEN_KEY);
     // localStorage.removeItem(this.USER_KEY);
-    localStorage.clear();
+    if(typeof window !== 'undefined' && window.localStorage)
+      localStorage.clear();
     this.currentUserSubject.next(null);
   }
 
@@ -82,12 +83,12 @@ export class AuthService {
   isAuthenticated(): boolean {
     console.log(typeof window);
     if (typeof window !== 'undefined' && localStorage.getItem(`${this.TOKEN_KEY}`)) {
-    const token = this.getToken();
-    if (!token) return false;
-    return true; 
-  }
-  // console.log("NOT AUTH")
-  return false;
+      const token = this.getToken();
+      if (!token) return false;
+      return true; 
+    }
+    // console.log("NOT AUTH")
+    return false;
   }
 
   getCurrentUserValue(): User | null {

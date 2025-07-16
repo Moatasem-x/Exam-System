@@ -1,5 +1,5 @@
-import { inject, Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateFn } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router, CanActivate } from '@angular/router';
 import { AuthService } from '../Services/auth.service';
 
 @Injectable({
@@ -7,18 +7,17 @@ import { AuthService } from '../Services/auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {
-    console.log("Constructor");
 
   }
 
   canActivate(): boolean {
     if (this.authService.isAuthenticated()) {
-      console.log("Auth");
       return true;
     }
-    console.log("Not Auth");
-    this.router.navigate(['/login']);
-    return false;
+    else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 }
 
@@ -37,8 +36,10 @@ export class AdminGuard implements CanActivate {
     {this.router.navigate(['/stdash']);
       return false;
     }
-    this.router.navigate(['/login']);
-    return false;
+    else{
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 }
 
@@ -56,8 +57,9 @@ export class StudentGuard implements CanActivate {
     {this.router.navigate(['/admindash']);
       return false;
     }
-
-    this.router.navigate(['/login']);
-    return false;
+    else {
+      this.router.navigate(['/login']);
+      return false;
+    }
   }
 }

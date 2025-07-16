@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { ExamService } from '../../Services/exam-service';
 import { QuestionService } from '../../Services/question-service';
 import { CommonModule } from '@angular/common';
-import { QuestionCard } from "../question-card/question-card";
-import { EditQuestionCard } from "../add-question-card/add-question-card";
+import { QuestionCard } from '../../Components/question-card/question-card';
+import { EditQuestionCard } from '../../Components/add-question-card/add-question-card';
 
 
 @Component({

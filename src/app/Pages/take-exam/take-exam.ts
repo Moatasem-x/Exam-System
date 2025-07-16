@@ -121,7 +121,9 @@ saveAnswers(): void {
     
     this.studentExamService.addStudentExamData(stExamData).subscribe({
       next:(res)=>{
-         this.router.navigate(['/result'], { state: { grade: g } });
+         this.router.navigate(['/result'], {
+          queryParams: { grade: g, examId: stExamData.examId }
+        });
       },
       error:(err)=>{
         console.log(err);

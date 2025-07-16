@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, DoCheck, ElementRef, OnInit, ViewChild,  } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { StudentExamService } from '../../../Services/student-exam-service';
 import { Subscription } from 'rxjs';
+import { StudentExamService } from '../../../Services/student-exam-service';
 
 @Component({
   selector: 'app-exam-summary',
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './exam-summary.html',
   styleUrl: './exam-summary.css'
 })
-export class ExamSummary implements AfterViewInit, OnInit, DoCheck {
+export class ExamSummary implements OnInit {
   constructor(private studentExamService:StudentExamService, private cdr:ChangeDetectorRef){}
  @ViewChild('summaryCanvas') summaryCanvas!: ElementRef;
  mySub:Array<Subscription> = [];
@@ -49,13 +49,6 @@ export class ExamSummary implements AfterViewInit, OnInit, DoCheck {
         this.cdr.detectChanges();
       }
     }))
-  }
-  ngAfterViewInit(): void {
-    
-  }
-
-  ngDoCheck(): void {
-    
   }
 }
 

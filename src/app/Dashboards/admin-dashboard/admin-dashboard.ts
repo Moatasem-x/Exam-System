@@ -1,21 +1,21 @@
-import { ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
-import { Average } from "./average/average";
-import { ExamSummary } from "./exam-summary/exam-summary";
+import { ChangeDetectorRef, Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentService } from '../../Services/student-service';
 import { Subscription } from 'rxjs';
+import { ExamSummary } from './exam-summary/exam-summary';
+import { Average } from './average/average';
+import { StudentService } from '../../Services/student-service';
 import { ExamService } from '../../Services/exam-service';
-import { StudentExamAnswer } from '../student-exam-answer/student-exam-answer';
 import { StudentExamService } from '../../Services/student-exam-service';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [Average, ExamSummary,CommonModule],
+  imports: [Average, ExamSummary,CommonModule, NgxSpinnerModule],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css'
 })
-export class AdminDashboard implements OnInit {
-  constructor(private studentService:StudentService, private cdr:ChangeDetectorRef, private examService:ExamService, private studentExamService:StudentExamService){}
+export class AdminDashboard implements OnInit, OnDestroy {
+  constructor(private studentService:StudentService, private cdr:ChangeDetectorRef, private examService:ExamService, private studentExamService:StudentExamService, private spinner:NgxSpinnerService){}
   teacher = { name: localStorage.getItem("user_name") };
   mySub:Array<Subscription> = [];
   totalStudents:number = 0;
@@ -37,6 +37,7 @@ export class AdminDashboard implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.spinner.show();
     this.mySub.push(this.studentService.getStudents().subscribe({
       next: (resp) => {
         this.totalStudents = resp.length - 1;
@@ -70,7 +71,9 @@ export class AdminDashboard implements OnInit {
       complete: () => {
         this.updateSummary();
         this.cdr.detectChanges();
-
+        setTimeout(() => {
+          this.spinner.hide();
+        }, 1500);
       }
     }));
   }
@@ -81,5 +84,11 @@ export class AdminDashboard implements OnInit {
       { title: 'Total Exams', value: this.totalExams, subtext: 'Active this month', color: 'text-success' },
       { title: 'Avg. Score', value: `${this.avgScore.toFixed(2)}%`, subtext: 'All exams', color: 'text-info' }
     ];
+  }
+
+  ngOnDestroy(): void {
+    for (let i = 0; i < this.mySub.length; i++) {
+      this.mySub[i].unsubscribe();
+    }
   }
 }

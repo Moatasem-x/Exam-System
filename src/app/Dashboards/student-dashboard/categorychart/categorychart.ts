@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild, ElementRef, Input, OnChanges, ChangeDetectorRef } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, ElementRef, Input, OnChanges, ChangeDetectorRef, OnInit, AfterViewChecked, DoCheck } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { IStudentExamData } from '../../../Interfaces/istudent-exam-data';
 
@@ -8,29 +8,24 @@ import { IStudentExamData } from '../../../Interfaces/istudent-exam-data';
   templateUrl: './categorychart.html',
   styleUrls: ['./categorychart.css'],
 })
-export class Categorychart implements AfterViewInit {
+export class Categorychart implements OnInit, AfterViewInit {
   constructor(private cdr:ChangeDetectorRef){
     
   }
-  // @ViewChild('categoryCanvas') categoryCanvas!: ElementRef;
   @ViewChild('categoryCanvas', { static: false }) categoryCanvas!: ElementRef;
   @Input() takenExams:Array<IStudentExamData> = [];
   examsNames:Array<string | undefined>=[];
   percentageList:Array<number>=[];
 
-  
-
-
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     for (let i = 0; i < this.takenExams.length; i++) {
       this.examsNames.push(this.takenExams[i].examName);
       this.percentageList.push((this.takenExams[i].studentGrade / (this.takenExams[i].examGrade || 1)) * 100);
-      console.log("exam: ",this.takenExams[i].examGrade);
-      console.log("st: ",this.takenExams[i].studentGrade);
-
-    
     }
-    console.log(this.percentageList);
+  }
+
+
+  ngAfterViewInit(): void {
     new Chart(this.categoryCanvas.nativeElement, {
       type: 'bar',
       data: {

@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { IStudentExamData } from '../../../Interfaces/istudent-exam-data';
 
 @Component({
   selector: 'app-scorechart',

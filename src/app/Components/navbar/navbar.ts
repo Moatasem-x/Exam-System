@@ -10,12 +10,15 @@ import { AuthService } from '../../Services/auth.service';
 })
 export class Navbar implements OnInit, DoCheck {
   constructor(private authService:AuthService){}
+  x:any;
   ngDoCheck(): void {
     if (typeof window !== 'undefined' && localStorage.getItem("jwt_token")) {
-    this.isAuth = this.authService.isAuthenticated();
-    this.userRole = localStorage.getItem("user_role") || "";
-    this.stId = localStorage.getItem("user_id") || "";}
+      this.isAuth = this.authService.isAuthenticated();
+      this.userRole = localStorage.getItem("user_role") || "";
+      this.stId = localStorage.getItem("user_id") || "";
+    }
 
+    this.isAuth = this.authService.isAuthenticated();
   }
   isAuth:boolean = false;
   userRole!:string;
@@ -23,9 +26,10 @@ export class Navbar implements OnInit, DoCheck {
   
   ngOnInit(): void {
     if (typeof window !== 'undefined' && localStorage.getItem("jwt_token")) {
-    this.isAuth = this.authService.isAuthenticated();
-    this.userRole = localStorage.getItem("user_role") || "";
-    this.stId = localStorage.getItem("user_id") || "";}
+      this.isAuth = this.authService.isAuthenticated();
+      this.userRole = localStorage.getItem("user_role") || "";
+      this.stId = localStorage.getItem("user_id") || "";
+    }
 
   }
 
